@@ -5,48 +5,27 @@ $(document).ready(function(){
         $('.btn-open').toggleClass('btn-to-right');
     });
     
-	
-    $('.content-natigation li:nth-child(1)').on('click', function(event) {
-		event.preventDefault();
-		$('html').animate({
-            scrollTop:$('#home').offset().top},1000,"easeOutSine");
-	});
-    $('.content-natigation li:nth-child(2)').on('click', function(event) {
-		event.preventDefault();
-		$('html').animate({
-            scrollTop:$('#about').offset().top},1000,"easeOutSine");
-	});
-    $('.content-natigation li:nth-child(3)').on('click', function(event) {
-		event.preventDefault();
-		$('html').animate({
-            scrollTop:$('#skills').offset().top},1000,"easeOutSine");
-	});
-    $('.content-natigation li:nth-child(4)').on('click', function(event) {
-		event.preventDefault();
-		$('html').animate({
-            scrollTop:$('#experiences').offset().top},1000,"easeOutSine");
-	});
-    $('.content-natigation li:nth-child(5)').on('click', function(event) {
-		event.preventDefault();
-		$('html').animate({
-            scrollTop:$('#education').offset().top},1000,"easeOutSine");
-	});
+	my_section_arr=[$('#home'),$('#about'), $('#skills'), $('#experiences'), $('#education'), $('#end')];
+	for(let i = 0; i<5;i++){
+		$('.content-natigation li:nth-child('+(i+1)+')').on('click', function(event) {
+			event.preventDefault();
+			$('html').animate({
+				scrollTop:my_section_arr[i].offset().top+5},800,"easeOutSine");
+				// cộng 5 để cho nó tụt xuống 1 cái section 1 tý, để cái dưới chạy đỡ sai
+		});
+	}
+    
+    
     $(window).scroll(function(event) {
-		if($('#home').offset().top<=$('html').scrollTop()&& $('html').scrollTop()<$('#about').offset().top){
-			x=1;
+		for(let i = 0; i<5; i++){
+			if(my_section_arr[i].offset().top<=$('html').scrollTop() && $('html').scrollTop() <my_section_arr[i+1].offset().top){
+				x=i+1;
+				console.log(my_section_arr[i+1].offset());
+			console.log($('html').scrollTop());
+			}
+			
 		}
-		if($('#about').offset().top<=$('html').scrollTop()&& $('html').scrollTop()<$('#skills').offset().top){
-			x=2;
-		}
-		if($('#skills').offset().top<=$('html').scrollTop()&& $('html').scrollTop()<$('#experiences').offset().top){
-			x=3;
-		}
-		if($('#experiences').offset().top<=$('html').scrollTop()&& $('html').scrollTop()<$('#education').offset().top){
-			x=4;
-		}
-		if($('#education').offset().top<=$('html').scrollTop()){
-			x=5;
-		}
+		
 		$('.content-natigation li:nth-child('+(x)+')').addClass
 			('active');
 			$('.content-natigation li:nth-child('+(x-1)+')').removeClass
@@ -67,5 +46,6 @@ $(document).ready(function(){
 		('active');
 			$('.content-natigation li:nth-child('+(x+1)+') span').removeClass
 		('active');
+	
 	});;
 });

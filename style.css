@@ -392,3 +392,7 @@ section{
 .experiences-container ul{
     width: 50%;
 }
+
+#education{
+    margin-bottom: 100px;
+}

@@ -379,6 +379,16 @@ section{
 .exper-time-color{
     background-color: rebeccapurple;
 }
+@media (max-width: 992px){
+    .experiences-container .section-box{
+        display: block!important;
+    }
+}
+
+.experiences-container .section-box{
+    display: flex;
+    justify-content: space-around;
+}
 .experiences-container ul{
     width: 50%;
 }
